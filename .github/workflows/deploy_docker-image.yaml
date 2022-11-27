@@ -11,9 +11,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-        with:
-          path: backstage
-          ref: v${{ github.event.client_payload.version }}
 
       - name: setup-node
         uses: actions/setup-node@v3
@@ -22,12 +19,12 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: yarn install
-        if: steps.cache-modules.outputs.cache-hit != 'true'
-        run: yarn install --immutable
-      # End of yarn setup
+        run: yarn install --frozen-lockfile
 
       - name: yarn build
-        run: yarn build
+        run: |
+          yarn tsc
+          yarn build:backend
         working-directory: .
 
       - name: Login to GitHub Container Registry

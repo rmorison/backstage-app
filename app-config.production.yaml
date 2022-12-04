@@ -11,7 +11,9 @@ backend:
   baseUrl: https://${BACKSTAGE_DOMAIN}
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
-  listen: ':7007'
+  listen:
+    port: '7007'
+    host: '0.0.0.0'
 
   # config options: https://node-postgres.com/api/client
   database:
@@ -32,6 +34,11 @@ catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
   # See https://backstage.io/docs/features/software-catalog/software-catalog-overview#adding-components-to-the-catalog for more details
   # on how to get entities into the catalog.
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location, User, Group]
   locations: []
 
 techdocs:

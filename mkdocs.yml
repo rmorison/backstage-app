@@ -5,4 +5,4 @@ nav:
 
 plugins:
   - techdocs-core
-  - mermaid2
+  - markdown_inline_mermaid

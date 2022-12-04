@@ -28,7 +28,7 @@ USER node
 WORKDIR /app
 
 # TechDocs mkdocs generator
-RUN mkdir techdocs
+RUN mkdir /app/techdocs
 RUN python3 -m pip install --user pipx && python3 -m pipx ensurepath
 ENV PATH="${PATH}:/home/node/.local/bin"
 RUN pipx install mkdocs && \

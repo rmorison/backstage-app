@@ -23,18 +23,19 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 USER node
 ENV HOME=/home/node
 
+# TechDocs mkdocs generator
+WORKDIR ${HOME}
+RUN mkdir /app/techdocs
+RUN python3 -m pip install --user pipx && python3 -m pipx ensurepath
+ENV PATH="${PATH}:${HOME}/.local/bin:${HOME}/node_modules/.bin"
+RUN pipx install mkdocs && \
+    pipx inject mkdocs markdown-inline-mermaid==1.* mkdocs-techdocs-core==1.* && \
+    npm install @mermaid-js/mermaid-cli
+
 # This should create the app dir as `node`.
 # If it is instead created as `root` then the `tar` command below will fail: `can't create directory 'packages/': Permission denied`.
 # If this occurs, then ensure BuildKit is enabled (`DOCKER_BUILDKIT=1`) so the app dir is correctly created as `node`.
 WORKDIR /app
-
-# TechDocs mkdocs generator
-RUN mkdir /app/techdocs
-RUN python3 -m pip install --user pipx && python3 -m pipx ensurepath
-ENV PATH="${PATH}:${HOME}/.local/bin:${HOME}/.node_modules/bin"
-RUN pipx install mkdocs && \
-    pipx inject mkdocs markdown-inline-mermaid==1.* mkdocs-techdocs-core==1.* && \
-    npm install @mermaid-js/mermaid-cli
 
 # This switches many Node.js dependencies to production mode.
 ENV NODE_ENV production

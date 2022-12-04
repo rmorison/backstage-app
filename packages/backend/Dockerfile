@@ -30,8 +30,9 @@ WORKDIR /app
 # TechDocs mkdocs generator
 RUN python3 -m pip install --user pipx && python3 -m pipx ensurepath
 ENV PATH="${PATH}:/home/node/.local/bin"
-RUN pipx install mkdocs && \
-    pipx inject mkdocs mkdocs-mermaid2-plugin
+RUN npm install -g @techdocs/cli && \
+    pipx install mkdocs && \
+    pipx inject mkdocs mkdocs-mermaid2-plugin mkdocs-techdocs-core==1.*
 
 # This switches many Node.js dependencies to production mode.
 ENV NODE_ENV production

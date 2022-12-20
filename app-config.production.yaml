@@ -42,9 +42,7 @@ catalog:
   locations: []
 
 techdocs:
-  builder: 'local' # Alternatives - 'external'
-  generator:
-    runIn: 'local' # Alternatives - 'local'
+  builder: 'external' # Alternatives - 'external'
   publisher:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
     local:

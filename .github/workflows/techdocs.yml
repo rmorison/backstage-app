@@ -37,7 +37,7 @@ jobs:
         run: python -m pip install mkdocs==1.* mkdocs-techdocs-core==1.* markdown-inline-mermaid==1.*
 
       - name: Install mermaid-cli
-        run: sudo npm install -g @mermaid-js/mermaid-cli
+        run: npm install -g @mermaid-js/mermaid-cli
         
       - name: Generate docs site
         run: techdocs-cli generate --no-docker --verbose

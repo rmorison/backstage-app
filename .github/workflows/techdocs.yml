@@ -51,4 +51,5 @@ jobs:
           port: 2222
           source: site
           target: /techdocs/default/component/backstage-app
+          strip_components: 1
           rm: true

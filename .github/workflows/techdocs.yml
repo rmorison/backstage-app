@@ -60,6 +60,6 @@ jobs:
           username: techdocs
           port: 2222
           source: site
-          target: /techdocs/$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME
+          target: /techdocs/${{ env.ENTITY_NAMESPACE }}/${{ env.ENTITY_KIND }}/${{ env.ENTITY_NAME }}
           strip_components: 1
           rm: true

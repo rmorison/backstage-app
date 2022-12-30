@@ -57,7 +57,7 @@ jobs:
         with:
           host: ${{ secrets.TECHDOCS_HOST }}
           key: ${{ secrets.TECHDOCS_SSH_PRIVATE_KEY }}
-          username: backstage
+          username: techdocs
           port: 2222
           source: site
           target: /techdocs/$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME

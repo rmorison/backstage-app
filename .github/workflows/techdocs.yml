@@ -47,10 +47,10 @@ jobs:
           file: 'catalog-info.yaml'
           key-path: '["metadata", "name"]'
 
-      - name: Set ENTITY_NAME env var
-        id: step_one
+      - name: Set ENTITY_NAME, ENTITY_KIND env vars
         run: |
           echo "ENTITY_NAME=${{ steps.entity-name.outputs.data }}" >> $GITHUB_ENV
+          echo "ENTITY_KIND=`echo ${{ env.ENTITY_KIND }} | tr '[:upper:]' '[:lower:]'`" >> $GITHUB_ENV
       
       - name: Publish docs site via scp
         uses: appleboy/scp-action@master

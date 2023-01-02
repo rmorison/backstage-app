@@ -1,6 +1,10 @@
 app:
-  # Should be the same as backend.baseUrl when using the `app-backend` plugin.
+  title: ${BACKSTAGE_APP_TITLE}
   baseUrl: https://${BACKSTAGE_DOMAIN}
+
+organization:
+  name: ${BACKSTAGE_ORGANIZATION_NAME}
+
 
 backend:
   # Note that the baseUrl should be the URL that the browser and other clients
